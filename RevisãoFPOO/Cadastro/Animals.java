@@ -1,8 +1,11 @@
 package RevisãoFPOO.Cadastro;
 
-public class Animals {
+public abstract class  Animals {
 
     //Atributtes
+    /**
+     *
+     */
     String size;
     //String not a primal variable((S)tring)
     double weight;
@@ -64,8 +67,7 @@ public class Animals {
     public void setSpecie(String specie) {
         this.specie = specie;
     }
-    
-    
+     
 }
 
 
