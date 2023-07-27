@@ -1,7 +1,7 @@
 package RevisãoFPOO.Cadastro;
 
 public class Dog extends Animals {
-
+    //Atributte
     String race;
 
     //CONSTRUCTOR

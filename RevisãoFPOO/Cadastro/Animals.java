@@ -14,7 +14,7 @@ public abstract class  Animals {
     String gender;
     String specie;
 
-    //BUILDERS
+    /*BUILDERS
     public Animals(String size, double weight, String owner, String gender, String specie) {
         this.size = size;
         this.weight = weight;
@@ -25,7 +25,7 @@ public abstract class  Animals {
 
     public Animals() {
 
-    }
+    }*/
 
     //GETTERS(GET INFORMATION) AND SETTER(SET INFORMATION)
     public String getSize() {
