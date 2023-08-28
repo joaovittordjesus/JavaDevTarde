@@ -1,5 +1,5 @@
 //CREATE A 2 ENTRY CALCULATOR WITH 4 OPERATIONS(SUM,SUB,MULT,DIV)
-package ExceptionTreatment;
+package RevisãoFPOO.ExceptionTreatment;
 
 import javax.swing.JOptionPane;
 
