@@ -3,7 +3,9 @@ public class App {
         //new AWTFrameExample();//Run the class constructor;
         //new GUISwingJFrameExample();//Run the class constructor; 
         //new GUISwingJOptionPaneExample();//Run the class constructor;
-        new JFrameUtility();
-        new ComponentsContainer();
+        //new JFrameUtility();
+        //new ComponentsContainer();
+        //new GridLayoutExercise();
+        new BorderLayoutExample();
     }
 }
