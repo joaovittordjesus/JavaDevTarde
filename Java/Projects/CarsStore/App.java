@@ -1,4 +1,4 @@
-package Projects.CarsStore;
+package Projects;
 
 public class App{
     public static void main(String[] args){
