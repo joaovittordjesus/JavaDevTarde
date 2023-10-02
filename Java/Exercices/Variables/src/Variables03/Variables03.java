@@ -6,17 +6,18 @@ public class Variables03 {
         
         boolean bool = true;
         
-        int intVar1 = true;
+        int intVar1 = 1;
         int intVar2 = 2;
-        intVar3 = 3;
+        int intVar3 = 3;
     
         double doubleVar1, doubleVar2, doubleVar3, doubleVar4;
         doubleVar1 = 1.1;
-        doublevAr2 = 2.1;
-        double doubleVar3 = 3.1;
+        doubleVar2 = 2.1;
+        doubleVar3 = 3.1;
+        doubleVar4 = 4.1;
         
     
-        String stringVar1 = 1;
+        String stringVar1 = "1";
         String stringVar2 = "2";
 
         //Don't edit these print statements
