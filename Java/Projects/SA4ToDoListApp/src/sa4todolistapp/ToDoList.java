@@ -15,7 +15,8 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author DevTardeA
+ * @author Professor Diogo Takemori Escola SENAI Luiz Varga & Aluno Joao Vittor Domingos de Jesus
+ * 
  */
 public class ToDoList extends JFrame {
     private JTextField taskInputField;
@@ -72,6 +73,9 @@ public class ToDoList extends JFrame {
         
         // Adiciona o painel principal à janela
         this.add(mainPanel);
+        
+        //Adicionando o Action Listener do addButton
+        addButton.addActionListenner(){}
     }
     
     // Método para iniciar a aplicação
