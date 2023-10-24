@@ -15,7 +15,7 @@ public class User implements Serializable{
     private String name;
     private int age;
     //Constructor
-    public User(String name, int idade){
+    public User(String name, int age){
     this.name = name;
     this.age = age;
     

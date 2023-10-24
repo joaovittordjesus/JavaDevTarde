@@ -73,7 +73,7 @@ public class UsersRegistration extends JFrame {
         
         File file = new File("data.txt");
         if (file.exists()){
-            users = Serialization.unserialize("data.txt");
+            users = Serialization.deserialize("data.txt");
             updateTable();
         }
         
@@ -91,33 +91,28 @@ public class UsersRegistration extends JFrame {
         
         UserOperations operations = new UserOperations(users, tableModel, table);
         
-        registerButton.addActionListener(new ActionListener(){
+        registerButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(Action Event e){
+            public void actionPerformed(ActionEvent e) {
                 operations.registerUser(nameInput.getText(), ageInput.getText());
                 nameInput.setText("");
                 ageInput.setText("");
             }
+        });
 
+        refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                operations.updateUser(selectedLine, nameInput.getText(), ageInput.getText());
             }
         });
-        
-    refreshButton.addActionListener(new ActionListener(){ 
-        @Override
-        public void actionPerformed(ActionEvent e){
-            operations.updateUser(selectedLine, nameInput.getText(), ageInput.getText());
-        }
-    });
-    
-    eraseButton.addActionListener(new ActionListener(){ 
-        @Override
-        public void actionPerformed(ActionEvent e){
-            operations.eraseUsers();
-        }
-    });
+
+        eraseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                operations.eraseUser(selectedLine);
+            }
+        });
     
     eraseAllButton.addActionListener(new ActionListener(){ 
         @Override
@@ -126,19 +121,18 @@ public class UsersRegistration extends JFrame {
         }
     });
     
-    saveButton.addActionListener(new ActionListener() { 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            operations.saveUsers();
-        }
-    });
-         
+    saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                operations.saveUsers();
+            }
+        });
     }
-    
-    private void updateTable(){
+
+    private void updateTable() {
         tableModel.setRowCount(0);
-        for (User user : users){
-            tableModel.addRow(new Object[] {user.getName(), user.getAge()});
+        for (User user : users) {
+            tableModel.addRow(new Object[]{user.getName(), user.getAge()});
         }
-    }    
+    }
 }
