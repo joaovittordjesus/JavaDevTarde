@@ -61,6 +61,7 @@ public class UsersRegistration extends JFrame {
         inputPanel.add(new JLabel("Name: "));
         inputPanel.add(nameInput);
         inputPanel.add(new JLabel("Age: "));
+        inputPanel.add(ageInput);
         inputPanel.add(registerButton);
         inputPanel.add(refreshButton);
         inputPanel.add(eraseButton);
