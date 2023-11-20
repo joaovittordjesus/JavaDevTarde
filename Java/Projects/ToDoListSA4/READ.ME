@@ -1,0 +1,75 @@
+# Documentação - Atividade de Desenvolvimento de Aplicação Java Interativa
+
+## Descrição da Atividade
+
+A atividade consiste no desenvolvimento de uma aplicação Java interativa que envolve o tratamento de eventos, aplicando conceitos como CRUD (Create, Read, Update, Delete) e interação com interface gráfica. A aplicação é uma "Gerenciamento de Tarefas" (To-Do List) que permite ao usuário adicionar, listar, excluir tarefas, além de filtrar por categoria.
+
+### Objetivo
+
+O objetivo principal é aplicar os conhecimentos adquiridos em tratamento de eventos de teclado, mouse, botão, lista e janela, apresentados nas lições anteriores. Os alunos serão avaliados com base na eficácia do tratamento de eventos implementado e na qualidade do código produzido.
+
+## Estrutura do Código
+
+### Classes
+
+#### 1. `Task`
+
+- **Descrição:** Representa uma tarefa com atributos de descrição e estado de conclusão.
+  
+#### 2. `TodoList`
+
+- **Descrição:** Classe principal que estende `JFrame` para criar a interface gráfica.
+- **Atributos:**
+  - `mainPanel`: Painel principal que contém todos os componentes.
+  - `taskInputField`: Campo de texto para adicionar novas tarefas.
+  - `addButton`: Botão para adicionar tarefas.
+  - `taskList`: Lista que exibe as tarefas.
+  - `listModel`: Modelo de lista para gerenciar os dados da lista.
+  - `deleteButton`, `markDoneButton`, `filterComboBox`, `clearCompletedButton`: Botões e JComboBox para funcionalidades adicionais.
+  - `tasks`: Lista que armazena as tarefas.
+  
+- **Métodos Principais:**
+  - `addTask()`: Adiciona uma nova tarefa à lista.
+  - `deleteTask()`: Exclui a tarefa selecionada da lista.
+  - `markTaskDone()`: Marca a tarefa selecionada como concluída.
+  - `filterTasks()`: Filtra as tarefas com base na seleção do JComboBox.
+  - `clearCompletedTasks()`: Limpa todas as tarefas concluídas.
+  - `updateTaskList()`: Atualiza a lista de tarefas exibida na GUI.
+  - `run()`: Exibe a janela.
+
+#### 3. Método `main`
+
+- **Descrição:** Cria uma instância da aplicação e a executa.
+
+## Implementação dos Métodos CRUD
+
+Os métodos CRUD foram implementados para realizar operações básicas de adição, exclusão, marcação de conclusão e filtragem de tarefas.
+
+## Tratamento de Eventos
+
+- Foram criados métodos de tratamento de eventos para cada componente da interface gráfica, como botão "Adicionar", "Excluir", "Concluir", etc.
+- Os métodos foram associados aos componentes correspondentes usando `addActionListener()`.
+
+## Apresentação do Projeto
+
+- Comentários explicativos foram adicionados ao código para garantir compreensibilidade.
+- A interface do usuário é organizada, amigável e fácil de usar.
+
+## Aplicação de Pelo Menos 5 Tratamentos de Eventos
+
+- Tratamentos de eventos de botão, lista, JComboBox, e outros foram aplicados corretamente.
+
+## Documentação
+
+- Foi criado um documento explicativo (README) descrevendo o funcionamento da aplicação, decisões de design e como os requisitos foram atendidos.
+
+## Melhorias na Interface do Usuário
+
+- Os componentes foram organizados de forma clara e compreensível.
+- Feedback visual foi adicionado para ações realizadas, como adição, exclusão ou conclusão de tarefas.
+
+## Tratamento de Erros
+
+- Tratamento de erro adequado foi implementado para garantir que o usuário não adicione uma tarefa vazia.
+
+---
