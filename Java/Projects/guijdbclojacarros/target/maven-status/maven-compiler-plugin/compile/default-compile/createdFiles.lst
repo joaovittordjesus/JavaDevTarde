@@ -1,4 +1,9 @@
+com\mycompany\View\CarrosPainel$1.class
+com\mycompany\App\App.class
+com\mycompany\Connection\ConnectionFactory.class
+com\mycompany\Connection\CarrosDAO.class
+com\mycompany\Controller\CarrosControl.class
 com\mycompany\Model\Carros.class
 com\mycompany\View\CarrosPainel.class
+com\mycompany\View\VendasView.class
 com\mycompany\View\JanelaPrincipal.class
-com\mycompany\App\App.class
