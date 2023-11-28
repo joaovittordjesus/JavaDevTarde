@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.mycompany.View;
 
 import javax.swing.JFrame;
@@ -9,8 +13,8 @@ public class JanelaPrincipal extends JFrame {
     public JanelaPrincipal() {
         jTPane = new JTabbedPane();
         add(jTPane);
-        CarrosPainel tab1 = new CarrosPainel();
-        jTPane.add("Carros", tab1);
+        ProdutoPainel tab1 = new ProdutoPainel();
+        jTPane.add("Produtos", tab1);
         setBounds(100, 100, 600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

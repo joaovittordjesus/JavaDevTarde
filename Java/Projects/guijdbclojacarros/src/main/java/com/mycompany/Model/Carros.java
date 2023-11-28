@@ -1,23 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.Model;
 
-/**
- *
- * @author DevTardeA
- */
 public class Carros {
-    //Atributos
+
     private String marca;
     private String modelo;
     private String ano;
     private String placa;
     private String valor;
 
-    public Carros(String string, String string0, String string1, String string2, String string3) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Carros(String marca, String modelo, String ano, String placa, String valor) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.placa = placa;
+        this.valor = valor;
     }
 
     public String getMarca() {
@@ -60,3 +56,5 @@ public class Carros {
         this.valor = valor;
     }
 }
+
+
