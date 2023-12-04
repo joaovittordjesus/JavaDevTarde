@@ -5,7 +5,6 @@
 package com.mycompany.Connection;
 
 import com.mycompany.Model.Cliente;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,5 +96,31 @@ public class ClienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao apagar cliente: " + e.getMessage(), e);
         }
+    }
+    
+    public Cliente obterClientePorId(int idCliente) {
+        String sql = "SELECT * FROM clientes WHERE ID=?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idCliente);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Crie e retorne um objeto Cliente com os dados do ResultSet
+                    int id = rs.getInt("ID");
+                    String nome = rs.getString("NOME");
+                    String email = rs.getString("EMAIL");
+                    String telefone = rs.getString("TELEFONE");
+
+                    // Verificar se o ID é nulo (o que não deveria acontecer)
+                    if (rs.wasNull()) {
+                        throw new RuntimeException("ID nulo encontrado para o cliente.");
+                    }
+
+                    return new Cliente(id, nome, email, telefone);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao obter cliente por ID: " + e.getMessage(), e);
+        }
+        return null; // Ou lançar uma exceção se o cliente não for encontrado
     }
 }

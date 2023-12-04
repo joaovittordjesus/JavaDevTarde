@@ -33,23 +33,25 @@ public class ProdutoDAO {
     }
 
     public List<Produto> listarTodos() {
-        List<Produto> produtos = new ArrayList<>();
-        String sql = "SELECT * FROM produtos_mercado";
-        try (Statement stmt = this.connection.createStatement();
-             ResultSet resultSet = stmt.executeQuery(sql)) {
-            while (resultSet.next()) {
-                String codigoBarras = resultSet.getString("CODIGO_BARRAS");
-                String nome = resultSet.getString("NOME");
-                String preco = resultSet.getString("PRECO");
-                int quantidade = resultSet.getInt("QUANTIDADE");
-                Produto produto = new Produto(codigoBarras, nome, preco, quantidade);
-                produtos.add(produto);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar produtos: " + e.getMessage(), e);
+    List<Produto> produtos = new ArrayList<>();
+    String sql = "SELECT * FROM produtos_mercado";
+    try (Statement stmt = this.connection.createStatement();
+         ResultSet resultSet = stmt.executeQuery(sql)) {
+        while (resultSet.next()) {
+            String codigoBarras = resultSet.getString("CODIGO_BARRAS");
+            String nome = resultSet.getString("NOME");
+            // Correção: Converter a String para double
+            double preco = Double.parseDouble(resultSet.getString("PRECO"));
+            int quantidade = resultSet.getInt("QUANTIDADE");
+            Produto produto = new Produto(codigoBarras, nome, preco, quantidade);
+            produtos.add(produto);
         }
-        return produtos;
+    } catch (SQLException e) {
+        throw new RuntimeException("Erro ao listar produtos: " + e.getMessage(), e);
     }
+    return produtos;
+}
+
 
     public void cadastrar(String codigoBarras, String nome, String preco, int quantidade) {
         String sql = "INSERT INTO produtos_mercado (CODIGO_BARRAS, NOME, PRECO, QUANTIDADE) VALUES (?, ?, ?, ?)";
