@@ -99,28 +99,26 @@ public class ClienteDAO {
     }
     
     public Cliente obterClientePorId(int idCliente) {
-        String sql = "SELECT * FROM clientes WHERE ID=?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, idCliente);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    // Crie e retorne um objeto Cliente com os dados do ResultSet
-                    int id = rs.getInt("ID");
-                    String nome = rs.getString("NOME");
-                    String email = rs.getString("EMAIL");
-                    String telefone = rs.getString("TELEFONE");
-
-                    // Verificar se o ID é nulo (o que não deveria acontecer)
-                    if (rs.wasNull()) {
-                        throw new RuntimeException("ID nulo encontrado para o cliente.");
-                    }
-
-                    return new Cliente(id, nome, email, telefone);
+    String sql = "SELECT * FROM clientes WHERE ID=?";
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, idCliente);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                int id = rs.getInt("ID");
+                String nome = rs.getString("NOME");
+                String email = rs.getString("EMAIL");
+                String telefone = rs.getString("TELEFONE");
+                if (rs.wasNull()) {
+                    throw new RuntimeException("ID nulo encontrado para o cliente.");
                 }
+                return new Cliente(id, nome, email, telefone);
+            } else {
+                // Se não houver resultados, lançar uma exceção ou retornar null, dependendo da sua lógica
+                throw new RuntimeException("Cliente não encontrado para o ID: " + idCliente);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao obter cliente por ID: " + e.getMessage(), e);
         }
-        return null; // Ou lançar uma exceção se o cliente não for encontrado
+    } catch (SQLException e) {
+        throw new RuntimeException("Erro ao obter cliente por ID: " + e.getMessage(), e);
     }
+}
 }

@@ -17,6 +17,28 @@ public class ProdutoDAO {
         this.connection = ConnectionFactory.getConnection();
         criarTabela();
     }
+    
+    public Produto obterProdutoPorId(int idProduto) {
+        String sql = "SELECT * FROM produtos_mercado WHERE CODIGO_BARRAS=?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idProduto);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Produto(
+                            rs.getString("CODIGO_BARRAS"),
+                            rs.getString("NOME"),
+                            Double.parseDouble(rs.getString("PRECO")),
+                            rs.getInt("QUANTIDADE")
+                    );
+                } else {
+                    throw new RuntimeException("Produto não encontrado para o ID: " + idProduto);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao obter produto por ID: " + e.getMessage(), e);
+        }
+    }
+
 
     public void criarTabela() {
         String sql = "CREATE TABLE IF NOT EXISTS produtos_mercado (" +
@@ -89,6 +111,33 @@ public class ProdutoDAO {
             System.out.println("Produto apagado com sucesso.");
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao apagar produto: " + e.getMessage(), e);
+        }
+    }
+    
+    public int obterQuantidade(String codigoBarras) {
+        String sql = "SELECT QUANTIDADE FROM produtos_mercado WHERE CODIGO_BARRAS = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, codigoBarras);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("QUANTIDADE");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao obter quantidade do produto: " + e.getMessage(), e);
+        }
+        return 0; // Retornar 0 se não encontrar o produto
+    }
+
+    public void atualizarQuantidade(String codigoBarras, int novaQuantidade) {
+        String sql = "UPDATE produtos_mercado SET QUANTIDADE = ? WHERE CODIGO_BARRAS = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, novaQuantidade);
+            stmt.setString(2, codigoBarras);
+            stmt.executeUpdate();
+            System.out.println("Quantidade do produto atualizada com sucesso.");
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar quantidade do produto: " + e.getMessage(), e);
         }
     }
 

@@ -1,8 +1,11 @@
 package com.mycompany.Connection;
 
+import com.mycompany.Model.Cliente;
+import com.mycompany.Model.Produto;
 import com.mycompany.Model.Venda;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,27 +35,39 @@ public class VendaDAO {
         }
     }
 
-    public List<Venda> listarTodos() {
-        String sql = "SELECT * FROM vendas";
-        List<Venda> vendas = new ArrayList<>();
+       public List<Venda> listarTodos() {
+    String sql = "SELECT * FROM vendas";
+    List<Venda> vendas = new ArrayList<>();
 
         try (PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Venda venda = new Venda(
-                        rs.getInt("ID"),
-                        rs.getInt("ID_CLIENTE"),
-                        rs.getInt("ID_PRODUTO"),
-                        rs.getInt("QUANTIDADE"),
-                        rs.getDate("DATA_VENDA").toLocalDate()
-                );
+                int vendaId = rs.getInt("ID");
+                int clienteId = rs.getInt("ID_CLIENTE");
+                int produtoId = rs.getInt("ID_PRODUTO");
+                int quantidade = rs.getInt("QUANTIDADE");
+                LocalDate dataVenda = rs.getDate("DATA_VENDA").toLocalDate();
+
+                // Você precisa ajustar a maneira como lida com o ID do cliente aqui
+                Cliente cliente = new ClienteDAO().obterClientePorId(clienteId);
+
+                // Você também precisa ajustar a maneira como lida com o ID do produto aqui
+                Produto produto = new ProdutoDAO().obterProdutoPorId(produtoId);
+
+                java.sql.Date dataVendaConvertida = java.sql.Date.valueOf(dataVenda);
+                Venda venda = new Venda(vendaId, cliente, produto, dataVendaConvertida, quantidade);
+
+
                 vendas.add(venda);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return vendas;
+        
+    return vendas;
     }
+ 
+
 
     public void cadastrar(int idCliente, int idProduto, int quantidade, Date dataVenda) {
         String sql = "INSERT INTO vendas (ID_CLIENTE, ID_PRODUTO, QUANTIDADE, DATA_VENDA) VALUES (?, ?, ?, ?)";
@@ -100,4 +115,6 @@ public class VendaDAO {
             throw new RuntimeException("Erro ao apagar venda: " + e.getMessage(), e);
         }
     }
+    
+    
 }

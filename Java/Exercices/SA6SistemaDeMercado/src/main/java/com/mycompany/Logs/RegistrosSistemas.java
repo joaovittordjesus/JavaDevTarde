@@ -26,6 +26,7 @@ public class RegistrosSistemas {
             System.out.println("Atividade registrada com sucesso.");
         } catch (IOException e) {
             System.err.println("Erro ao registrar atividade: " + e.getMessage());
+            e.printStackTrace(); // Adição da stack trace na saída de erro
         }
     }
 }
